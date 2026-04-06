@@ -107,7 +107,6 @@
             gap: 12px;
         }
 
-        /* Custom Slider Styling */
         .slider-box {
             background: rgba(255, 255, 255, 0.03);
             padding: 15px;
@@ -144,7 +143,6 @@
             box-shadow: 0 0 15px var(--primary);
         }
 
-        /* Result Section */
         .result-area {
             margin-top: 2rem;
             padding: 1.5rem;
@@ -206,7 +204,6 @@
             text-transform: uppercase;
         }
 
-        /* Chrome, Safari, Edge, Opera - Remove arrows */
         input::-webkit-outer-spin-button,
         input::-webkit-inner-spin-button {
             -webkit-appearance: none;
@@ -243,7 +240,7 @@
             <label style="margin:0">Rate Refund</label>
             <span id="rateValue">0.60</span>
         </div>
-        <input type="range" id="rateRefund" min="0.50" max="1.00" step="0.01" value="0.80" oninput="calculate()">
+        <input type="range" id="rateRefund" min="0.50" max="1.00" step="0.01" value="0.60" oninput="calculate()">
     </div>
 
     <div class="result-area">
@@ -283,7 +280,7 @@
 
     function copyResult() {
         const hasil = document.getElementById('totalRefund').innerText;
-        const sisa = document.getElementById('sisaMasa').value;
+        const sisa = document.getElementById('sisaMasa').value || 0;
         const text = `Estimasi Refund (${sisa} hari): ${hasil}\nProcessed by Nerestore`;
         
         navigator.clipboard.writeText(text).then(() => {
