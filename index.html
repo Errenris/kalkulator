@@ -3,162 +3,167 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Refund Pro | Nerestore</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <title>Refund Pro | Nerestore Official</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --primary: #c084fc;
             --accent: #22d3ee;
             --bg: #030712;
             --glass: rgba(255, 255, 255, 0.03);
+            --glass-hover: rgba(255, 255, 255, 0.06);
             --glass-border: rgba(255, 255, 255, 0.1);
             --text: #ffffff;
-            --text-muted: #9ca3af;
+            --text-dim: #9ca3af;
         }
 
         * {
             box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             -webkit-tap-highlight-color: transparent;
         }
 
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
             background-color: var(--bg);
             color: var(--text);
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            margin: 0;
             padding: 20px;
-            overflow: hidden; /* Mencegah scroll dari blob dekorasi */
+            overflow-x: hidden;
         }
 
-        /* Dekorasi Background - Blobs */
+        /* Animated Blobs Background */
         .blob {
             position: absolute;
-            width: 300px;
-            height: 300px;
+            width: 400px;
+            height: 400px;
             background: linear-gradient(135deg, var(--primary), #4f46e5);
-            filter: blur(80px);
+            filter: blur(100px);
             border-radius: 50%;
             z-index: -1;
-            opacity: 0.4;
-            animation: move 20s infinite alternate;
+            opacity: 0.3;
+            animation: float 25s infinite alternate ease-in-out;
         }
 
         .blob-2 {
-            bottom: 10%;
-            right: 10%;
+            bottom: -50px;
+            right: -50px;
             background: var(--accent);
-            width: 250px;
-            height: 250px;
-            animation-delay: -5s;
+            width: 350px;
+            height: 350px;
+            animation-delay: -7s;
         }
 
-        @keyframes move {
-            from { transform: translate(-20%, -20%); }
-            to { transform: translate(20%, 20%); }
+        @keyframes float {
+            from { transform: translate(-10%, -10%) rotate(0deg); }
+            to { transform: translate(15%, 15%) rotate(10deg); }
         }
 
-        .container {
+        /* Main Card Container */
+        .card {
             background: var(--glass);
-            backdrop-filter: blur(25px) saturate(150%);
-            -webkit-backdrop-filter: blur(25px) saturate(150%);
+            backdrop-filter: blur(24px) saturate(160%);
+            -webkit-backdrop-filter: blur(24px) saturate(160%);
             border: 1px solid var(--glass-border);
             border-radius: 32px;
             padding: 2.5rem;
             width: 100%;
             max-width: 420px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            position: relative;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+            transition: transform 0.3s ease;
         }
 
+        /* Header Styling */
         .header {
             text-align: center;
             margin-bottom: 2rem;
         }
 
         .header h1 {
-            font-size: 1.6rem;
+            font-size: 1.75rem;
             font-weight: 800;
-            margin: 0;
-            letter-spacing: -0.03em;
-            background: linear-gradient(to right, #fff, var(--text-muted));
+            letter-spacing: -0.04em;
+            background: linear-gradient(to right, #ffffff, #94a3b8);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .header p {
-            color: var(--text-muted);
-            font-size: 0.8rem;
-            margin-top: 4px;
+            color: var(--text-dim);
+            font-size: 0.85rem;
+            margin-top: 6px;
             font-weight: 500;
         }
 
+        /* Form Controls */
+        .field { margin-bottom: 1.5rem; }
+        
         label {
             display: block;
             font-size: 0.7rem;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 8px;
-            color: var(--text-muted);
-        }
-
-        .input-wrapper {
-            margin-bottom: 1.25rem;
+            letter-spacing: 0.12em;
+            color: var(--text-dim);
+            margin-bottom: 10px;
         }
 
         input[type="number"] {
             width: 100%;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.04);
             border: 1px solid var(--glass-border);
             border-radius: 16px;
-            padding: 14px;
+            padding: 14px 18px;
             color: white;
             font-size: 1rem;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 600;
+            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         input[type="number"]:focus {
             outline: none;
             border-color: var(--primary);
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.08);
             box-shadow: 0 0 20px rgba(192, 132, 252, 0.15);
         }
 
         .grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
+            gap: 15px;
         }
 
-        .slider-box {
-            background: rgba(255, 255, 255, 0.03);
-            padding: 16px;
+        /* Slider Styling */
+        .slider-group {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 18px;
             border-radius: 20px;
             border: 1px solid var(--glass-border);
-            margin-top: 5px;
         }
 
-        .slider-info {
+        .slider-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
         }
 
         #rateValue {
             color: var(--accent);
             font-weight: 800;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
         }
 
         input[type="range"] {
             -webkit-appearance: none;
             width: 100%;
-            height: 4px;
+            height: 5px;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 10px;
             cursor: pointer;
@@ -166,77 +171,95 @@
 
         input[type="range"]::-webkit-slider-thumb {
             -webkit-appearance: none;
-            width: 20px;
-            height: 20px;
-            background: #fff;
+            width: 22px;
+            height: 22px;
+            background: #ffffff;
             border-radius: 50%;
-            box-shadow: 0 0 15px var(--primary);
-            transition: 0.2s;
+            box-shadow: 0 0 15px rgba(192, 132, 252, 0.5);
+            transition: 0.2s ease;
         }
 
-        input[type="range"]::-webkit-slider-thumb:hover {
-            transform: scale(1.1);
-        }
-
-        /* Area Hasil */
-        .result-card {
+        /* Result Display */
+        .result-box {
             margin-top: 2rem;
             padding: 1.8rem;
-            background: linear-gradient(135deg, rgba(192, 132, 252, 0.1), rgba(34, 211, 238, 0.1));
+            background: linear-gradient(135deg, rgba(192, 132, 252, 0.15), rgba(34, 211, 238, 0.15));
             border-radius: 24px;
             border: 1px solid rgba(255, 255, 255, 0.1);
             text-align: center;
+            position: relative;
         }
 
         #totalRefund {
-            font-size: 2.2rem;
+            font-size: 2.25rem;
             font-weight: 800;
-            margin: 0;
+            margin: 5px 0;
             letter-spacing: -0.02em;
-            text-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            color: #fff;
         }
 
-        .copy-btn {
+        .btn-copy {
             margin-top: 15px;
-            background: #fff;
-            color: #000;
+            background: #ffffff;
+            color: #000000;
             border: none;
-            padding: 10px 20px;
-            border-radius: 12px;
-            font-size: 0.8rem;
+            padding: 12px 20px;
+            border-radius: 14px;
+            font-size: 0.85rem;
             font-weight: 700;
             cursor: pointer;
-            transition: all 0.2s ease;
             width: 100%;
+            transition: all 0.3s ease;
         }
 
-        .copy-btn:hover {
+        .btn-copy:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.15);
         }
+
+        /* Statistics Footer */
+        .stats {
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.65rem;
+            color: var(--text-dim);
+            background: rgba(255, 255, 255, 0.02);
+            padding: 10px;
+            border-radius: 100px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .pulse {
+            width: 7px;
+            height: 7px;
+            background: #4ade80;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #4ade80;
+            animation: blink 1.5s infinite;
+        }
+
+        @keyframes blink { 0% { opacity: 0.3; } 50% { opacity: 1; } 100% { opacity: 0.3; } }
 
         footer {
             margin-top: 2rem;
             text-align: center;
-            opacity: 0.6;
+            border-top: 1px solid var(--glass-border);
+            padding-top: 1.5rem;
         }
 
-        .dev-tag {
-            font-size: 0.7rem;
-            font-weight: 600;
-            letter-spacing: 0.1em;
-        }
-
-        .dev-name {
+        .nerestore-brand {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
             color: var(--accent);
-            text-shadow: 0 0 10px rgba(34, 211, 238, 0.3);
+            text-transform: uppercase;
         }
 
         input::-webkit-outer-spin-button,
-        input::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
+        input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
     </style>
 </head>
 <body>
@@ -244,84 +267,112 @@
 <div class="blob"></div>
 <div class="blob blob-2"></div>
 
-<div class="container">
+<div class="card">
     <div class="header">
         <h1>REFUND PRO</h1>
-        <p>Premium Subscription Calculator</p>
+        <p>Premium Subscription Tool</p>
     </div>
 
-    <div class="input-wrapper">
-        <label>Harga Pembelian</label>
-        <input type="number" id="hargaBeli" placeholder="Rp 0" oninput="calculate()">
+    <div class="field">
+        <label>Harga Produk (IDR)</label>
+        <input type="number" id="hargaBeli" placeholder="Contoh: 150000" oninput="calculate()">
     </div>
 
     <div class="grid">
-        <div class="input-wrapper">
+        <div class="field">
             <label>Total Durasi</label>
             <input type="number" id="totalDurasi" placeholder="30 Hari" oninput="calculate()">
         </div>
-        <div class="input-wrapper">
-            <label>Sisa Masa</label>
-            <input type="number" id="sisaMasa" placeholder="0 Hari" oninput="calculate()">
+        <div class="field">
+            <label>Sisa Aktif</label>
+            <input type="number" id="sisaMasa" placeholder="15 Hari" oninput="calculate()">
         </div>
     </div>
 
-    <div class="slider-box">
-        <div class="slider-info">
+    <div class="field slider-group">
+        <div class="slider-header">
             <label style="margin:0">Rate Refund</label>
             <span id="rateValue">0.60</span>
         </div>
         <input type="range" id="rateRefund" min="0.50" max="1.00" step="0.01" value="0.60" oninput="calculate()">
     </div>
 
-    <div class="result-card">
-        <label style="margin-bottom: 5px;">Estimasi Refund</label>
+    <div class="result-box">
+        <label style="margin-bottom: 2px;">Total Estimasi</label>
         <h2 id="totalRefund">Rp 0</h2>
-        <button class="copy-btn" onclick="copyResult()">Salin Hasil</button>
+        <button class="btn-copy" onclick="copyToClipboard()">SALIN DETAIL</button>
+    </div>
+
+    <div class="stats">
+        <div class="pulse"></div>
+        <span>TOTAL VISITOR: </span>
+        <span id="visitorCount" style="color: #fff; font-weight: 800;">...</span>
     </div>
 
     <footer>
-        <div class="dev-tag">ENGINEERED BY <span class="dev-name">NERESTORE</span></div>
+        <div class="nerestore-brand">Powered by Nerestore</div>
     </footer>
 </div>
 
 <script>
-    function calculate() {
-        const hargaBeli = parseFloat(document.getElementById('hargaBeli').value) || 0;
-        const totalDurasi = parseFloat(document.getElementById('totalDurasi').value) || 0;
-        const sisaMasa = parseFloat(document.getElementById('sisaMasa').value) || 0;
-        const rateRefund = parseFloat(document.getElementById('rateRefund').value);
-        
-        document.getElementById('rateValue').innerText = rateRefund.toFixed(2);
+    // FUNGSI VISITOR COUNTER
+    // Namespace 'nerestore-final' memastikan hitungan mulai dari baru untuk project ini
+    async function initCounter() {
+        try {
+            const res = await fetch('https://api.countapi.xyz/hit/nerestore-final-calc/visits');
+            const data = await res.json();
+            document.getElementById('visitorCount').innerText = data.value.toLocaleString();
+        } catch (e) {
+            document.getElementById('visitorCount').innerText = "LIVE";
+        }
+    }
+    initCounter();
 
-        let refund = 0;
-        if (totalDurasi > 0 && sisaMasa > 0) {
-            const sisaValid = sisaMasa > totalDurasi ? totalDurasi : sisaMasa;
-            refund = (sisaValid / totalDurasi) * hargaBeli * rateRefund;
+    // LOGIKA PERHITUNGAN
+    function calculate() {
+        const harga = parseFloat(document.getElementById('hargaBeli').value) || 0;
+        const total = parseFloat(document.getElementById('totalDurasi').value) || 0;
+        const sisa = parseFloat(document.getElementById('sisaMasa').value) || 0;
+        const rate = parseFloat(document.getElementById('rateRefund').value);
+        
+        document.getElementById('rateValue').innerText = rate.toFixed(2);
+
+        let hasil = 0;
+        if (total > 0 && sisa > 0) {
+            const sisaValid = sisa > total ? total : sisa;
+            // Rumus: (Sisa/Total) * Harga * Rate
+            hasil = (sisaValid / total) * harga * rate;
         }
 
-        const formatter = new Intl.NumberFormat('id-ID', {
+        const formatIDR = new Intl.NumberFormat('id-ID', {
             style: 'currency',
             currency: 'IDR',
             minimumFractionDigits: 0
         });
 
-        document.getElementById('totalRefund').innerText = formatter.format(Math.floor(refund));
+        document.getElementById('totalRefund').innerText = formatIDR.format(Math.floor(hasil));
     }
 
-    function copyResult() {
-        const hasil = document.getElementById('totalRefund').innerText;
+    // FUNGSI COPY
+    function copyToClipboard() {
+        const total = document.getElementById('totalRefund').innerText;
         const sisa = document.getElementById('sisaMasa').value || 0;
-        const text = `Estimasi Refund (${sisa} hari): ${hasil}\nProcessed by Nerestore`;
+        const harga = document.getElementById('hargaBeli').value || 0;
         
-        navigator.clipboard.writeText(text).then(() => {
-            const btn = document.querySelector('.copy-btn');
-            const originalText = btn.innerText;
-            btn.innerText = 'Copied to Clipboard! ✅';
-            btn.style.background = '#22d3ee';
+        const teks = `📝 *DETAIL REFUND NERESTORE*\n\n` +
+                     `• Harga Beli: Rp ${Number(harga).toLocaleString('id-ID')}\n` +
+                     `• Sisa Durasi: ${sisa} Hari\n` +
+                     `• Estimasi Refund: *${total}*\n\n` +
+                     `_Processed by Nerestore Official_`;
+
+        navigator.clipboard.writeText(teks).then(() => {
+            const btn = document.querySelector('.btn-copy');
+            const original = btn.innerText;
+            btn.innerText = 'BERHASIL DISALIN! ✅';
+            btn.style.background = '#4ade80';
             
             setTimeout(() => {
-                btn.innerText = originalText;
+                btn.innerText = original;
                 btn.style.background = '#fff';
             }, 2000);
         });
